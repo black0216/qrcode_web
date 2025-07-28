@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>手机端展示页</title>
+    <title>体彩</title>
     <style>
         * {
             margin: 0;
@@ -248,14 +248,14 @@
     <!-- 首页 -->
     <div class="home-page" id="homePage">
         <picture>
-            <!-- <source srcset="images/main.webp" type="image/webp"> -->
+            <source srcset="images/main.webp" type="image/webp">
             <img src="images/main.jpg" alt="首页图片" class="home-image">
         </picture>
-        <div class="tap-hint">点击添加导师专员</div>
+        <!-- <div class="tap-hint">点击添加导师专员</div> -->
     </div>
 
     <!-- 二维码页面 -->
-    <div class="qr-page" id="qrPage">
+    <!-- <div class="qr-page" id="qrPage">
         <div class="decoration"></div>
         <div class="decoration"></div>
         <div class="decoration"></div>
@@ -266,65 +266,26 @@
             <h1 class="qr-title">导师专员</h1>
             <picture>
                 <!-- <source srcset="images/QRcode.webp" type="image/webp"> -->
-                <img src="images/QRcode1.jpg" alt="二维码" class="qr-image" id="qrImage">
+                <!-- <img src="images/QRcode1.jpg" alt="二维码" class="qr-image" id="qrImage">
             </picture>
             <p class="qr-subtitle">长按扫描二维码</p>
         </div>
-    </div>
+    </div> --> 
 
     <script>
         // 获取页面元素
         const homePage = document.getElementById('homePage');
-        const qrPage = document.getElementById('qrPage');
-        const backButton = document.getElementById('backButton');
-        const qrImage = document.getElementById('qrImage');
-
-        // 二维码图片数组
-        const qrImages = ['images/QRcode1.jpg', 'images/QRcode2.jpg', 'images/QRcode3.jpg'];
-
-        // 随机选择二维码图片的函数
-        function getRandomQrImage() {
-            const randomIndex = Math.floor(Math.random() * qrImages.length);
-            return qrImages[randomIndex];
-        }
 
         // 首页点击事件
         homePage.addEventListener('click', function() {
             // 添加点击反馈
             this.style.transform = 'scale(0.98)';
             
-            // 随机选择二维码图片
-            qrImage.src = getRandomQrImage();
-            
             setTimeout(() => {
-                homePage.style.display = 'none';
-                qrPage.classList.add('active');
-                this.style.transform = 'scale(1)';
+                // 在当前页面跳转到企业微信链接
+                window.location.href = 'https://work.weixin.qq.com/ca/cawcde13daa396aba8';
             }, 150);
         });
-
-        // 返回按钮点击事件
-        backButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            
-            qrPage.style.animation = 'fadeOut 0.3s ease-in-out';
-            
-            setTimeout(() => {
-                qrPage.classList.remove('active');
-                qrPage.style.animation = '';
-                homePage.style.display = 'block';
-            }, 300);
-        });
-
-        // 添加淡出动画
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeOut {
-                from { opacity: 1; }
-                to { opacity: 0; }
-            }
-        `;
-        document.head.appendChild(style);
 
         // 防止图片拖拽
         document.querySelectorAll('img').forEach(img => {
